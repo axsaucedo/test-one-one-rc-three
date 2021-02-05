@@ -4,7 +4,6 @@
     "metadata": {
         "name": "test",
         "namespace": "default",
-        "timestamp": null,
         "labels": {
             "app.kubernetes.io/instance": "test-one-one-rc-three-default",
             "fluentd": "true"
