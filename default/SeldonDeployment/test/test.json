@@ -104,9 +104,6 @@
                 },
                 "componentSpecs": [
                     {
-                        "metadata": {
-                            "creationTimestamp": null
-                        },
                         "spec": {
                             "containers": [
                                 {
