@@ -82,7 +82,7 @@
                 "manager": "manager",
                 "operation": "Update",
                 "apiVersion": "serving.kubeflow.org/v1alpha2",
-                "time": "2021-02-09T11:19:58Z",
+                "time": "2021-02-09T11:57:10Z",
                 "fieldsType": "FieldsV1",
                 "fieldsV1": {
                     "f:status": {
@@ -93,6 +93,9 @@
                         },
                         "f:canary": {
                             ".": {},
+                            "f:explainer": {
+                                "f:host": {}
+                            },
                             "f:predictor": {
                                 ".": {},
                                 "f:host": {},
@@ -103,6 +106,9 @@
                         "f:conditions": {},
                         "f:default": {
                             ".": {},
+                            "f:explainer": {
+                                "f:host": {}
+                            },
                             "f:predictor": {
                                 ".": {},
                                 "f:host": {},
@@ -137,13 +143,6 @@
                 "maxReplicas": 10,
                 "logger": {
                     "mode": "all"
-                }
-            },
-            "explainer": {
-                "alibi": {
-                    "type": "AnchorTabular",
-                    "storageUri": "gs://seldon-models/sklearn/income/explainer-py36-0.5.2",
-                    "resources": {}
                 }
             }
         },
