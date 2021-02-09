@@ -6,8 +6,115 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "test-one-one-rc-three-default",
             "fluentd": "true"
-        }
+        },
+        "managedFields": [
+            {
+                "manager": "argocd-application-controller",
+                "operation": "Update",
+                "apiVersion": "serving.kubeflow.org/v1alpha2",
+                "time": "2021-02-09T11:14:17Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                        },
+                        "f:labels": {
+                            ".": {},
+                            "f:app.kubernetes.io/instance": {},
+                            "f:fluentd": {}
+                        }
+                    },
+                    "f:spec": {
+                        ".": {},
+                        "f:canary": {
+                            ".": {},
+                            "f:predictor": {
+                                ".": {},
+                                "f:logger": {
+                                    ".": {},
+                                    "f:mode": {}
+                                },
+                                "f:xgboost": {
+                                    ".": {},
+                                    "f:resources": {},
+                                    "f:storageUri": {}
+                                }
+                            }
+                        },
+                        "f:canaryTrafficPercent": {},
+                        "f:default": {
+                            ".": {},
+                            "f:predictor": {
+                                ".": {},
+                                "f:logger": {
+                                    ".": {},
+                                    "f:mode": {}
+                                },
+                                "f:maxReplicas": {},
+                                "f:minReplicas": {},
+                                "f:sklearn": {
+                                    ".": {},
+                                    "f:resources": {
+                                        ".": {},
+                                        "f:limits": {
+                                            ".": {},
+                                            "f:cpu": {},
+                                            "f:memory": {}
+                                        },
+                                        "f:requests": {
+                                            ".": {},
+                                            "f:cpu": {},
+                                            "f:memory": {}
+                                        }
+                                    },
+                                    "f:storageUri": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "manager": "manager",
+                "operation": "Update",
+                "apiVersion": "serving.kubeflow.org/v1alpha2",
+                "time": "2021-02-09T11:19:58Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:status": {
+                        ".": {},
+                        "f:address": {
+                            ".": {},
+                            "f:url": {}
+                        },
+                        "f:canary": {
+                            ".": {},
+                            "f:predictor": {
+                                ".": {},
+                                "f:host": {},
+                                "f:name": {}
+                            }
+                        },
+                        "f:canaryTraffic": {},
+                        "f:conditions": {},
+                        "f:default": {
+                            ".": {},
+                            "f:predictor": {
+                                ".": {},
+                                "f:host": {},
+                                "f:name": {}
+                            }
+                        },
+                        "f:traffic": {},
+                        "f:url": {}
+                    }
+                }
+            }
+        ]
     },
     "spec": {
         "default": {
@@ -31,13 +138,31 @@
                 "logger": {
                     "mode": "all"
                 }
+            },
+            "explainer": {
+                "alibi": {
+                    "type": "AnchorTabular",
+                    "storageUri": "gs://seldon-models/sklearn/income/explainer-py36-0.5.2",
+                    "resources": {}
+                }
             }
         },
         "canary": {
             "predictor": {
                 "xgboost": {
                     "storageUri": "gs://kfserving-samples/models/xgboost/iris",
-                    "resources": {}
+                    "nthread": 1,
+                    "runtimeVersion": "v0.4.1",
+                    "resources": {
+                        "limits": {
+                            "cpu": "1",
+                            "memory": "2Gi"
+                        },
+                        "requests": {
+                            "cpu": "1",
+                            "memory": "2Gi"
+                        }
+                    }
                 },
                 "logger": {
                     "mode": "all"
